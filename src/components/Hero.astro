@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import bodyShot from "../assets/images/body-shot.jpg";
+import SplitWords from "./SplitWords.astro";
+---
+
+<section id="home" class="relative overflow-hidden bg-sand-100 pt-32 pb-20 md:pt-40 md:pb-28">
+  <div class="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 md:grid-cols-[1.3fr_1fr] md:gap-8 md:px-10">
+    <div>
+      <p class="mb-6 text-sm uppercase tracking-[0.2em] text-clay-600">
+        Simret Consulting &amp; Coaching
+      </p>
+
+      <h1 class="font-display text-[clamp(2.75rem,7vw,5.5rem)] font-light leading-[0.98] text-ink-900">
+        <SplitWords text="Connecting" />
+        <br />
+        <SplitWords text="people." class="text-clay-600" />
+        <br />
+        <SplitWords text="Inspiring" />
+        <br />
+        <SplitWords text="change." />
+      </h1>
+
+      <p class="mt-8 max-w-md text-balance text-lg text-ink-700" data-reveal>
+        Coaching for individuals, couples, and premarital pairs navigating
+        real connection — plus Motivational Interviewing training for
+        organizations. Led by Dr. Kebreab Hailegiorgis.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4" data-reveal>
+        <a
+          href="#book"
+          class="rounded-full bg-ink-900 px-7 py-3.5 text-sm text-sand-50 transition-colors hover:bg-clay-600"
+        >
+          Book a session
+        </a>
+        <a href="#about" class="text-sm text-ink-700 underline underline-offset-4 hover:text-clay-600">
+          Meet Dr. Hailegiorgis
+        </a>
+      </div>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-xs md:max-w-none" data-hero-media>
+      <div class="absolute -inset-4 -z-10 rounded-[2rem] bg-clay-300/40 blur-2xl"></div>
+      <Image
+        src={bodyShot}
+        alt="Dr. Kebreab Hailegiorgis"
+        class="aspect-[4/5] w-full rounded-[1.75rem] object-cover shadow-xl shadow-ink-900/10"
+        widths={[320, 480, 640]}
+        sizes="(min-width: 768px) 400px, 80vw"
+      />
+    </div>
+  </div>
+
+  <div class="mx-auto mt-16 flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 text-xs uppercase tracking-[0.15em] text-ink-500 md:px-10" data-reveal>
+    <span>Video sessions · evenings &amp; Saturdays</span>
+    <span>Over 15 years of practice</span>
+    <span>MICA-certified · MINT member</span>
+  </div>
+</section>

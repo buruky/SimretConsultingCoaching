@@ -1,0 +1,17 @@
+---
+import FAQAccordion from "./FAQAccordion";
+---
+
+<section id="faq" class="bg-sand-100 py-24 md:py-32">
+  <div class="mx-auto max-w-3xl px-6 md:px-10">
+    <p class="mb-4 text-sm uppercase tracking-[0.2em] text-clay-600" data-reveal>
+      Good to know
+    </p>
+    <h2 class="mb-10 font-display text-3xl text-ink-900 md:text-4xl" data-reveal>
+      Questions people usually ask.
+    </h2>
+    <div data-reveal>
+      <FAQAccordion client:visible />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+---
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className = "" } = Astro.props;
+const words = text.split(" ");
+---
+
+{
+  words.map((word, i) => (
+    <span class="inline-block overflow-hidden align-top pb-[0.08em]">
+      <span data-hero-word class={`inline-block will-change-transform ${className}`}>
+        {word}
+        {i < words.length - 1 ? " " : ""}
+      </span>
+    </span>
+  ))
+}

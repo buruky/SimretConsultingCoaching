@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SiteMotion from "../components/SiteMotion";
+import Nav from "../components/Nav";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Approach from "../components/Approach.astro";
+import Services from "../components/Services.astro";
+import Booking from "../components/Booking.astro";
+import FAQ from "../components/FAQ.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout>
+  <SiteMotion client:load />
+  <Nav client:load />
+  <main>
+    <Hero />
+    <About />
+    <Approach />
+    <Services />
+    <Booking />
+    <FAQ />
+  </main>
+  <Footer />
+</Layout>

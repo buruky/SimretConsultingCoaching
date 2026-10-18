@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+import headshot from "../assets/images/headshot.png";
+---
+
+<section id="about" class="bg-sand-100 py-24 md:py-32">
+  <div class="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 md:grid-cols-[0.8fr_1.2fr] md:gap-16 md:px-10">
+    <div class="flex items-start gap-5" data-reveal>
+      <Image
+        src={headshot}
+        alt="Dr. Kebreab Hailegiorgis"
+        class="h-20 w-20 flex-shrink-0 rounded-full object-cover ring-4 ring-sand-50"
+        widths={[160]}
+        width={160}
+        height={160}
+      />
+      <div>
+        <p class="font-display text-xl text-ink-900">Dr. Kebreab Hailegiorgis</p>
+        <p class="text-sm text-ink-500">Relationship Coach</p>
+      </div>
+    </div>
+
+    <div>
+      <p class="mb-6 text-sm uppercase tracking-[0.2em] text-clay-600" data-reveal>
+        Why this work
+      </p>
+      <p class="font-display text-2xl leading-snug text-ink-900 md:text-3xl" data-reveal>
+        Married for more than 25 years, Dr. Hailegiorgis and his wife Ariam
+        learned to not only live together, but to live in harmony through
+        their own struggles, conflicts, and disagreements along the way.
+      </p>
+      <p class="mt-6 max-w-xl text-ink-700" data-reveal>
+        That experience — paired with rigorous academic research and
+        training as a Certified MICA Practitioner and member of MINT
+        (Motivational Interviewing Network of Trainers) — is what he now
+        shares with the people and organizations he works with: individuals,
+        couples at every stage, and teams learning to navigate conflict and
+        connection well.
+      </p>
+    </div>
+  </div>
+</section>

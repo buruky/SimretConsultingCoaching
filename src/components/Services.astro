@@ -1,0 +1,84 @@
+---
+const services = [
+  {
+    name: "Individual & Couples Coaching",
+    who: "For individuals or couples, at any stage",
+    length: "60 min · video",
+    price: "$150",
+    note: "One partner can book alone — the other doesn't need to attend.",
+    bookable: true,
+  },
+  {
+    name: "Premarital Coaching",
+    who: "For engaged and newly-committed couples",
+    length: "60 min · video",
+    price: "$150",
+    note: "Build a foundation before the wedding, not after.",
+    bookable: true,
+  },
+  {
+    name: "Bete Simret Weekend Workshop",
+    who: "For married couples",
+    length: "A full weekend",
+    price: "Priced by arrangement",
+    note: "In person. Reach out to plan dates and scope together.",
+    bookable: false,
+  },
+] as const;
+---
+
+<section id="services" class="bg-sand-100 py-24 md:py-32">
+  <div class="mx-auto max-w-6xl px-6 md:px-10">
+    <div class="mb-14 max-w-xl" data-reveal>
+      <p class="mb-4 text-sm uppercase tracking-[0.2em] text-clay-600">Ways to work together</p>
+      <h2 class="font-display text-3xl text-ink-900 md:text-4xl">
+        Coaching for wherever you are in the relationship.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      {
+        services.map((s) => (
+          <div
+            data-reveal
+            class="group flex flex-col justify-between rounded-2xl border border-ink-900/10 bg-sand-50 p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-clay-500/40 hover:shadow-xl hover:shadow-ink-900/5"
+          >
+            <div>
+              <h3 class="font-display text-xl text-ink-900">{s.name}</h3>
+              <p class="mt-2 text-sm text-ink-500">{s.who}</p>
+              <p class="mt-6 text-sm text-ink-700">{s.length}</p>
+              <p class="mt-1 font-display text-3xl text-clay-600">{s.price}</p>
+              <p class="mt-4 text-sm text-ink-500">{s.note}</p>
+            </div>
+            <a
+              href={s.bookable ? "#book" : "#contact"}
+              class="mt-8 inline-flex w-fit items-center gap-2 text-sm font-medium text-ink-900 transition-colors group-hover:text-clay-600"
+            >
+              {s.bookable ? "Book this session" : "Get in touch"}
+              <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      data-reveal
+      class="mt-6 flex flex-col items-start justify-between gap-4 rounded-2xl bg-ink-900 p-8 text-sand-100 md:flex-row md:items-center"
+    >
+      <div>
+        <h3 class="font-display text-xl">Training &amp; consulting for organizations</h3>
+        <p class="mt-2 max-w-lg text-sm text-sand-100/70">
+          Motivational Interviewing, trauma, and collective trauma training
+          for teams and organizations.
+        </p>
+      </div>
+      <a
+        href="#contact"
+        class="whitespace-nowrap rounded-full bg-clay-500 px-6 py-3 text-sm text-sand-50 transition-colors hover:bg-clay-600"
+      >
+        Inquire about training
+      </a>
+    </div>
+  </div>
+</section>
