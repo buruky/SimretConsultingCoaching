@@ -35,14 +35,22 @@ export default function FAQAccordion() {
               className="flex w-full items-center justify-between gap-6 py-6 text-left"
             >
               <span className="font-display text-lg text-ink-900">{item.q}</span>
-              <span
+              <svg
                 aria-hidden="true"
-                className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-ink-900/20 text-ink-900 transition-transform duration-300 ${
-                  expanded ? "rotate-45 border-clay-500 text-clay-600" : ""
+                viewBox="0 0 16 16"
+                fill="none"
+                className={`h-4 w-4 shrink-0 text-ink-900 transition-transform duration-300 ${
+                  expanded ? "rotate-180 text-clay-600" : ""
                 }`}
               >
-                +
-              </span>
+                <path
+                  d="M3 6l5 5 5-5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </button>
             <div
               className="grid overflow-hidden transition-all duration-300 ease-out"
