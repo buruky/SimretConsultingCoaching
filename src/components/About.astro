@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import Divider from "./Divider.astro";
 import headshot from "../assets/images/headshot.png";
 ---
@@ -8,13 +7,12 @@ import headshot from "../assets/images/headshot.png";
   <Divider class="mb-16 text-ink-500/60" />
   <div class="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 md:grid-cols-[0.8fr_1.2fr] md:gap-16 md:px-10">
     <div class="flex items-start gap-5" data-reveal>
-      <Image
-        src={headshot}
+      <img
+        src={headshot.src}
+        width="160"
+        height="160"
         alt="Dr. Kebreab Hailegiorgis"
         class="h-20 w-20 flex-shrink-0 rounded-full object-cover ring-4 ring-sand-50 transition-transform duration-500 hover:scale-110"
-        widths={[160]}
-        width={160}
-        height={160}
       />
       <div>
         <p class="font-display text-xl text-ink-900">Dr. Kebreab Hailegiorgis</p>

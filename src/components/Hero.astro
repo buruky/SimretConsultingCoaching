@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import bodyShot from "../assets/images/body-shot.jpg";
 import SplitWords from "./SplitWords.astro";
 ---
@@ -43,12 +42,12 @@ import SplitWords from "./SplitWords.astro";
 
     <div class="relative mx-auto w-full max-w-xs md:max-w-none" data-hero-media>
       <div class="absolute -inset-4 -z-10 rounded-[2rem] bg-forest-300/40 blur-2xl"></div>
-      <Image
-        src={bodyShot}
+      <img
+        src={bodyShot.src}
+        width={bodyShot.width}
+        height={bodyShot.height}
         alt="Dr. Kebreab Hailegiorgis"
         class="aspect-[4/5] w-full rounded-[1.75rem] object-cover shadow-xl shadow-ink-900/10"
-        widths={[320, 480, 640]}
-        sizes="(min-width: 768px) 400px, 80vw"
         loading="eager"
         fetchpriority="high"
       />
