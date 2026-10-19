@@ -58,7 +58,7 @@ export default function BookingPanel() {
               setReady(false);
               setActive(s.id);
             }}
-            className={`rounded-full px-5 py-2.5 text-sm transition-colors ${
+            className={`rounded-full px-5 py-2.5 text-sm transition-all active:scale-95 ${
               active === s.id
                 ? "bg-ink-900 text-sand-50"
                 : "bg-sand-50 text-ink-700 hover:bg-sand-200"

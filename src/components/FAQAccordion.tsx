@@ -3,7 +3,7 @@ import { useState } from "react";
 const FAQS = [
   {
     q: "Do sessions happen in person or by video?",
-    a: "One-on-one and couples sessions are held by video over Zoom. The Bete Semret weekend workshop is held in person.",
+    a: "One-on-one and couples sessions are held by video over Zoom. The Bete Simret weekend workshop is held in person.",
   },
   {
     q: "Does my partner have to be there too?",

@@ -21,6 +21,7 @@
 
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-body: "Inter", system-ui, sans-serif;
+  --font-ethiopic: "Noto Sans Ethiopic", serif;
 }
 
 html {
@@ -40,6 +41,10 @@ body {
 
 .font-display {
   font-family: var(--font-display);
+}
+
+.font-ethiopic {
+  font-family: var(--font-ethiopic);
 }
 
 /* GSAP-driven reveal: start hidden, JS flips this on scroll */
@@ -80,4 +85,27 @@ body {
 [data-magnetic] {
   position: relative;
   overflow: hidden;
+}
+
+/* heartbeat-ish breathing used on the logo mark and the Deco divider glyph */
+@keyframes pulse-soft {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.6;
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-soft {
+    animation: none;
+  }
 }

@@ -1,4 +1,6 @@
 ---
+import Divider from "./Divider.astro";
+
 const services = [
   {
     name: "Individual & Couples Coaching",
@@ -17,7 +19,7 @@ const services = [
     bookable: true,
   },
   {
-    name: "Bete Semret Weekend Workshop",
+    name: "Bete Simret Weekend Workshop",
     who: "For married couples",
     length: "A full weekend",
     price: "Priced by arrangement",
@@ -82,10 +84,12 @@ const services = [
       </div>
       <a
         href="#contact"
-        class="whitespace-nowrap rounded-full bg-forest-500 px-6 py-3 text-sm text-sand-50 transition-colors hover:bg-forest-600"
+        class="whitespace-nowrap rounded-full bg-forest-500 px-6 py-3 text-sm text-sand-50 transition-all hover:bg-forest-600 active:scale-95"
       >
         Inquire about training
       </a>
     </div>
+
+    <Divider class="mt-16 text-ink-500/60" />
   </div>
 </section>
