@@ -7,7 +7,7 @@ const FAQS = [
   },
   {
     q: "Does my partner have to be there too?",
-    a: "No — one partner can book and attend alone if that works better for your situation.",
+    a: "No, one partner can book and attend alone if that works better for your situation.",
   },
   {
     q: "What if I need to cancel or reschedule?",
@@ -40,7 +40,7 @@ export default function FAQAccordion() {
                 viewBox="0 0 16 16"
                 fill="none"
                 className={`h-4 w-4 shrink-0 text-ink-900 transition-transform duration-300 ${
-                  expanded ? "rotate-180 text-clay-600" : ""
+                  expanded ? "rotate-180 text-forest-700" : ""
                 }`}
               >
                 <path

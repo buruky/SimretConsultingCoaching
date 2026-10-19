@@ -32,7 +32,7 @@ export default function Nav() {
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 md:px-10">
         <a href="#home" className="font-display text-lg tracking-tight text-ink-900">
-          Simret<span className="text-clay-500">.</span>
+          Simret<span className="text-forest-500">.</span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
@@ -40,7 +40,7 @@ export default function Nav() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm text-ink-700 transition-colors hover:text-clay-600"
+                className="text-sm text-ink-700 transition-colors hover:text-forest-700"
               >
                 {link.label}
               </a>
@@ -50,7 +50,8 @@ export default function Nav() {
 
         <a
           href="#book"
-          className="hidden rounded-full bg-ink-900 px-5 py-2.5 text-sm text-sand-50 transition-colors hover:bg-clay-600 md:inline-block"
+          data-magnetic
+          className="hidden rounded-full bg-ink-900 px-5 py-2.5 text-sm text-sand-50 transition-colors hover:bg-forest-600 md:inline-block"
         >
           Book a session
         </a>

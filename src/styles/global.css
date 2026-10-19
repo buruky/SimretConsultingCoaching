@@ -13,11 +13,11 @@
   --color-ink-700: #4a4038;
   --color-ink-500: #776a5e;
 
-  /* terracotta — strong complementary accent */
-  --color-clay-300: #e3a88a;
-  --color-clay-500: #c1623d;
-  --color-clay-600: #a84f2e;
-  --color-clay-700: #873d22;
+  /* forest green — strong complementary accent */
+  --color-forest-300: #8b9f8e;
+  --color-forest-500: #4b6a4f;
+  --color-forest-600: #384f3b;
+  --color-forest-700: #233626;
 
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-body: "Inter", system-ui, sans-serif;
@@ -34,7 +34,7 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-clay-500);
+  background-color: var(--color-forest-500);
   color: var(--color-sand-50);
 }
 
@@ -51,4 +51,33 @@ body {
 .no-js [data-reveal] {
   opacity: 1;
   transform: none;
+}
+
+/* cursor-tracked glow, position set via --x/--y in SiteMotion's mousemove handler */
+[data-spotlight] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-spotlight]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    280px circle at var(--x, 50%) var(--y, 50%),
+    color-mix(in srgb, var(--color-forest-500) 16%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+[data-spotlight]:hover::before {
+  opacity: 1;
+}
+
+[data-magnetic] {
+  position: relative;
+  overflow: hidden;
 }

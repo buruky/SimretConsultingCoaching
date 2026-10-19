@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 
-// shortcut: Cal.com account isn't created yet, so these slugs are placeholders.
-// Set CAL_CONFIGURED to true and fill in the real event slugs once the
-// client's Cal.com account + event types exist (see backend.md).
-const CAL_CONFIGURED = false;
+// shortcut: the client's Cal.com account isn't created yet, so both tabs
+// point at the same sample event for preview. Swap in the real event slugs
+// (one per session type) once the client's Cal.com account exists.
+const CAL_CONFIGURED = true;
 
 const SESSION_TYPES = [
-  { id: "individual-couples", label: "Individual & Couples", calLink: "simret-coaching/individual-couples" },
-  { id: "premarital", label: "Premarital Coaching", calLink: "simret-coaching/premarital" },
+  { id: "individual-couples", label: "Individual & Couples", calLink: "buruk-yimesgen-xvoxel/15min" },
+  { id: "premarital", label: "Premarital Coaching", calLink: "buruk-yimesgen-xvoxel/15min" },
 ] as const;
 
 export default function BookingPanel() {
@@ -16,6 +16,7 @@ export default function BookingPanel() {
     SESSION_TYPES[0].id
   );
   const [ready, setReady] = useState(false);
+  const embedRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!CAL_CONFIGURED) return;
@@ -27,6 +28,20 @@ export default function BookingPanel() {
       });
     })();
   }, []);
+
+  // Cal's embed script creates its own <iframe> outside React's control and
+  // doesn't expose a way to set `loading` on it, so mark it lazy ourselves
+  // once it shows up (the section is already client:visible-gated, but dev
+  // tools still flag the tag itself without the attribute).
+  useEffect(() => {
+    if (!CAL_CONFIGURED || !embedRef.current) return;
+    const container = embedRef.current;
+    const markLazy = () => container.querySelector("iframe")?.setAttribute("loading", "lazy");
+    markLazy();
+    const observer = new MutationObserver(markLazy);
+    observer.observe(container, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [active]);
 
   const current = SESSION_TYPES.find((s) => s.id === active)!;
 
@@ -54,18 +69,26 @@ export default function BookingPanel() {
         ))}
       </div>
 
-      <div className="relative min-h-[480px] overflow-hidden rounded-2xl border border-ink-900/10 bg-sand-50">
+      <div
+        ref={embedRef}
+        className={`relative overflow-hidden rounded-2xl ${
+          CAL_CONFIGURED && !ready ? "min-h-120" : ""
+        }`}
+      >
         {CAL_CONFIGURED ? (
           <>
             {!ready && (
-              <div className="absolute inset-0 flex items-center justify-center bg-sand-50">
-                <span className="h-8 w-8 animate-spin rounded-full border-2 border-ink-900/20 border-t-clay-500" />
+              <div className="absolute inset-0 flex items-center justify-center bg-sand-200">
+                <span className="h-8 w-8 animate-spin rounded-full border-2 border-ink-900/20 border-t-forest-500" />
               </div>
             )}
+            {/* No fixed height here on purpose: Cal auto-resizes its iframe to
+                fit the actual content, and pinning this to 480px left a gap
+                of our own background showing below the shorter calendar. */}
             <Cal
               key={current.id}
               calLink={current.calLink}
-              style={{ width: "100%", height: "480px" }}
+              style={{ width: "100%" }}
               config={{ layout: "month_view" }}
             />
           </>
@@ -78,7 +101,7 @@ export default function BookingPanel() {
             </p>
             <a
               href="#contact"
-              className="mt-2 rounded-full bg-clay-500 px-6 py-3 text-sm text-sand-50 transition-colors hover:bg-clay-600"
+              className="mt-2 rounded-full bg-forest-500 px-6 py-3 text-sm text-sand-50 transition-colors hover:bg-forest-600"
             >
               Get in touch
             </a>
