@@ -6,7 +6,6 @@ const services = [
     name: "Individual & Couples Coaching",
     who: "For individuals or couples, at any stage",
     length: "60 min · video",
-    price: 150,
     note: "One partner can book alone. The other doesn't need to attend.",
     bookable: true,
   },
@@ -14,7 +13,6 @@ const services = [
     name: "Premarital Coaching",
     who: "For engaged and newly-committed couples",
     length: "60 min · video",
-    price: 150,
     note: "Build a foundation before the wedding, not after.",
     bookable: true,
   },
@@ -22,7 +20,6 @@ const services = [
     name: "Bete Simret Weekend Workshop",
     who: "For married couples",
     length: "A full weekend",
-    price: "Priced by arrangement",
     note: "In person. Reach out to plan dates and scope together.",
     bookable: false,
   },
@@ -50,13 +47,6 @@ const services = [
               <h3 class="font-display text-xl text-ink-900">{s.name}</h3>
               <p class="mt-2 text-sm text-ink-500">{s.who}</p>
               <p class="mt-6 text-sm text-ink-700">{s.length}</p>
-              <p class="mt-1 font-display text-3xl text-forest-700">
-                {typeof s.price === "number" ? (
-                  <span data-count-to={s.price} data-count-prefix="$">$0</span>
-                ) : (
-                  s.price
-                )}
-              </p>
               <p class="mt-4 text-sm text-ink-500">{s.note}</p>
             </div>
             <a

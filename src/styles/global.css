@@ -21,7 +21,6 @@
 
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-body: "Inter", system-ui, sans-serif;
-  --font-ethiopic: "Noto Sans Ethiopic", serif;
 }
 
 html {
@@ -41,10 +40,6 @@ body {
 
 .font-display {
   font-family: var(--font-display);
-}
-
-.font-ethiopic {
-  font-family: var(--font-ethiopic);
 }
 
 /* GSAP-driven reveal: start hidden, JS flips this on scroll */
