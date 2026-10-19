@@ -32,7 +32,7 @@ export default function Nav() {
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 md:px-10">
         <a href="#home" className="font-display text-lg tracking-tight text-ink-900">
-          Simret<span className="text-forest-500">.</span>
+          Semret<span className="text-forest-500">.</span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
