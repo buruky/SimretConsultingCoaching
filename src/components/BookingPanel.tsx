@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 
-// shortcut: the client's Cal.com account isn't created yet, so both tabs
-// point at the same sample event for preview. Swap in the real event slugs
-// (one per session type) once the client's Cal.com account exists.
+// shortcut: Individual & Couples still points at a sample event. Swap in its
+// real event slug once it exists on the client's Cal.com account.
 const CAL_CONFIGURED = true;
 
 const SESSION_TYPES = [
   { id: "individual-couples", label: "Individual & Couples", calLink: "buruk-yimesgen-xvoxel/15min" },
-  { id: "premarital", label: "Premarital Coaching", calLink: "buruk-yimesgen-xvoxel/15min" },
+  { id: "premarital", label: "Premarital Coaching", calLink: "kebreab-yimesgen-nudzqr/premarital-counseling" },
 ] as const;
 
 export default function BookingPanel() {
