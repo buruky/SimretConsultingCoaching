@@ -15,7 +15,7 @@ const FAQS = [
   },
   {
     q: "How does the deposit work?",
-    a: "A 25% deposit is collected when you book and is non-refundable, but it's applied toward your session.",
+    a: "A $25 deposit is collected when you book and is non-refundable, but it's applied toward your session.",
   },
 ] as const;
 

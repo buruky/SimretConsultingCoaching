@@ -20,8 +20,8 @@ const services = [
     name: "Bete Simret Weekend Workshop",
     who: "For married couples",
     length: "A full weekend",
-    note: "In person. Reach out to plan dates and scope together.",
-    bookable: false,
+    note: "In person, on scheduled dates. Look for upcoming workshop events.",
+    bookable: true,
   },
 ] as const;
 ---
@@ -72,14 +72,22 @@ const services = [
           for teams and organizations.
         </p>
       </div>
-      <a
-        href="#contact"
+      <button
+        type="button"
+        data-cal-link="kebreab-yimesgen-nudzqr/training-consulting-inquiry"
+        data-cal-config='{"layout":"month_view"}'
         class="whitespace-nowrap rounded-full bg-forest-500 px-6 py-3 text-sm text-sand-50 transition-all hover:bg-forest-600 active:scale-95"
       >
         Inquire about training
-      </a>
+      </button>
     </div>
 
     <Divider class="mt-16 text-ink-500/60" />
   </div>
 </section>
+
+<script>
+  // Loads Cal's embed so any [data-cal-link] button opens a booking popup.
+  import { getCalApi } from "@calcom/embed-react";
+  getCalApi();
+</script>

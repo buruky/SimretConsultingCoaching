@@ -1,13 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 
-// shortcut: Individual & Couples still points at a sample event. Swap in its
-// real event slug once it exists on the client's Cal.com account.
 const CAL_CONFIGURED = true;
 
+// WEEKEND WORKSHOP: paste the Cal.com link of the workshop event here, e.g.
+//   "https://cal.com/kebreab-yimesgen-nudzqr/weekend-workshop-march"
+// Leave it "" when no workshop is scheduled; the tab then says so instead.
+const WORKSHOP_EVENT_URL = "";
+
 const SESSION_TYPES = [
-  { id: "individual-couples", label: "Individual & Couples", calLink: "buruk-yimesgen-xvoxel/15min" },
+  { id: "individual-couples", label: "Individual & Couples", calLink: "kebreab-yimesgen-nudzqr/couples-individual-counseling-150" },
   { id: "premarital", label: "Premarital Coaching", calLink: "kebreab-yimesgen-nudzqr/premarital-counseling" },
+  // shortcut: changing WORKSHOP_EVENT_URL needs a redeploy; check Cal's
+  // availability API instead if that gets old.
+  {
+    id: "workshop",
+    label: "Weekend Workshop",
+    calLink: WORKSHOP_EVENT_URL.trim().replace(/^https?:\/\/(app\.)?cal\.com\//, "").replace(/\/$/, ""),
+    open: WORKSHOP_EVENT_URL.trim() !== "",
+    note: "Workshops run on set dates. Look for upcoming workshop events below and reserve a spot for you and your spouse.",
+  },
 ] as const;
 
 export default function BookingPanel() {
@@ -43,6 +55,8 @@ export default function BookingPanel() {
   }, [active]);
 
   const current = SESSION_TYPES.find((s) => s.id === active)!;
+  const live = CAL_CONFIGURED && !("open" in current && !current.open);
+  const isWorkshop = current.id === "workshop";
 
   return (
     <div>
@@ -68,13 +82,17 @@ export default function BookingPanel() {
         ))}
       </div>
 
+      {live && "note" in current && (
+        <p className="mb-6 max-w-2xl text-sm text-ink-700">{current.note}</p>
+      )}
+
       <div
         ref={embedRef}
         className={`relative overflow-hidden rounded-2xl ${
-          CAL_CONFIGURED && !ready ? "min-h-120" : ""
+          live && !ready ? "min-h-120" : ""
         }`}
       >
-        {CAL_CONFIGURED ? (
+        {live ? (
           <>
             {!ready && (
               <div className="absolute inset-0 flex items-center justify-center bg-sand-200">
@@ -93,10 +111,13 @@ export default function BookingPanel() {
           </>
         ) : (
           <div className="flex min-h-[480px] flex-col items-center justify-center gap-4 p-10 text-center">
-            <p className="font-display text-2xl text-ink-900">Booking opens soon</p>
+            <p className="font-display text-2xl text-ink-900">
+              {isWorkshop ? "No workshops scheduled right now" : "Booking opens soon"}
+            </p>
             <p className="max-w-sm text-sm text-ink-500">
-              Online scheduling is being connected. In the meantime, reach
-              out directly to set up a {current.label.toLowerCase()} session.
+              {isWorkshop
+                ? "New weekend dates are posted here as they're set. Reach out to hear about the next one, or to plan a workshop for your group."
+                : `Online scheduling is being connected. In the meantime, reach out directly to set up a ${current.label.toLowerCase()} session.`}
             </p>
             <a
               href="#contact"
@@ -109,9 +130,8 @@ export default function BookingPanel() {
       </div>
 
       <p className="mt-6 max-w-2xl text-xs leading-relaxed text-ink-500">
-        A 25% non-refundable deposit is required to confirm your booking.
-        Reschedule anytime through the booking system. Cancellations need at
-        least 24 hours notice; missed sessions are billed at 50%.
+        A $25 deposit is charged when you book. To reschedule or cancel,
+        please do so at least 24 hours before your session.
       </p>
     </div>
   );
