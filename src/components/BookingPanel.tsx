@@ -47,7 +47,19 @@ export default function BookingPanel() {
   // a "select-booking-tab" event (handled live, for when it was already on
   // screen and mounted).
   useEffect(() => {
+    // Clear the handoff value whichever path consumed it (and even if it's
+    // stale or unrecognized), so it can't leak into a later page load in the
+    // same tab and quietly override the default tab.
+    const clearStored = () => {
+      try {
+        sessionStorage.removeItem("bookingTab");
+      } catch {
+        // sessionStorage unavailable — nothing to clear.
+      }
+    };
+
     const applyTab = (tab: string | null | undefined) => {
+      clearStored();
       if (!tab) return;
       const match = SESSION_TYPES.find((s) => s.id === tab);
       if (!match) return;
@@ -57,10 +69,7 @@ export default function BookingPanel() {
 
     try {
       const stored = sessionStorage.getItem("bookingTab");
-      if (stored) {
-        applyTab(stored);
-        sessionStorage.removeItem("bookingTab");
-      }
+      if (stored) applyTab(stored);
     } catch {
       // sessionStorage unavailable — the event listener below still works.
     }
