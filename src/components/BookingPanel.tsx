@@ -9,8 +9,9 @@ const CAL_CONFIGURED = true;
 const WORKSHOP_EVENT_URL = "";
 
 const SESSION_TYPES = [
-  { id: "individual-couples", label: "Individual & Couples", calLink: "kebreab-yimesgen-nudzqr/couples-individual-counseling-150" },
   { id: "premarital", label: "Premarital Coaching", calLink: "kebreab-yimesgen-nudzqr/premarital-counseling" },
+  { id: "individual-couples", label: "Individual & Couples", calLink: "kebreab-yimesgen-nudzqr/couples-individual-counseling-150" },
+  { id: "parenting", label: "Parenting Coaching", calLink: "kebreab-yimesgen-nudzqr/parenting-education-coaching-150" },
   // shortcut: changing WORKSHOP_EVENT_URL needs a redeploy; check Cal's
   // availability API instead if that gets old.
   {

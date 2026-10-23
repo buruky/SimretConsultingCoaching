@@ -3,6 +3,13 @@ import Divider from "./Divider.astro";
 
 const services = [
   {
+    name: "Premarital Coaching",
+    who: "For engaged and newly-committed couples",
+    length: "60 min · video",
+    note: "Build a foundation before the wedding, not after.",
+    bookable: true,
+  },
+  {
     name: "Individual & Couples Coaching",
     who: "For individuals or couples, at any stage",
     length: "60 min · video",
@@ -10,10 +17,10 @@ const services = [
     bookable: true,
   },
   {
-    name: "Premarital Coaching",
-    who: "For engaged and newly-committed couples",
+    name: "Parenting Education & Coaching",
+    who: "For parents and caregivers",
     length: "60 min · video",
-    note: "Build a foundation before the wedding, not after.",
+    note: "Practical tools for raising children with connection and calm.",
     bookable: true,
   },
   {
@@ -35,7 +42,7 @@ const services = [
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
       {
         services.map((s) => (
           <div
