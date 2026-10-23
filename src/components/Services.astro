@@ -8,6 +8,8 @@ const services = [
     length: "60 min · video",
     note: "Build a foundation before the wedding, not after.",
     bookable: true,
+    // Must match an id in SESSION_TYPES in BookingPanel.tsx.
+    bookingTab: "premarital",
   },
   {
     name: "Individual & Couples Coaching",
@@ -15,6 +17,7 @@ const services = [
     length: "60 min · video",
     note: "One partner can book alone. The other doesn't need to attend.",
     bookable: true,
+    bookingTab: "individual-couples",
   },
   {
     name: "Parenting Education & Coaching",
@@ -22,6 +25,7 @@ const services = [
     length: "60 min · video",
     note: "Practical tools for raising children with connection and calm.",
     bookable: true,
+    bookingTab: "parenting",
   },
   {
     name: "Bete Simret Weekend Workshop",
@@ -29,6 +33,7 @@ const services = [
     length: "A full weekend",
     note: "In person, on scheduled dates. Look for upcoming workshop events.",
     bookable: true,
+    bookingTab: "workshop",
   },
 ] as const;
 ---
@@ -58,6 +63,7 @@ const services = [
             </div>
             <a
               href={s.bookable ? "#book" : "#contact"}
+              data-book-tab={s.bookable ? s.bookingTab : undefined}
               class="mt-8 inline-flex w-fit items-center gap-2 text-sm font-medium text-ink-900 transition-colors group-hover:text-forest-700"
             >
               {s.bookable ? "Book this session" : "Get in touch"}
@@ -97,4 +103,26 @@ const services = [
   // Loads Cal's embed so any [data-cal-link] button opens a booking popup.
   import { getCalApi } from "@calcom/embed-react";
   getCalApi();
+</script>
+
+<script>
+  // "Book this session" links jump to #book, but the booking panel's tabs
+  // (premarital / individual-couples / parenting / workshop) are separate
+  // React state. Forward the clicked card's tab so BookingPanel can select
+  // it: sessionStorage covers the case where the panel hasn't mounted yet
+  // (client:visible), the custom event covers the case where it's already
+  // on screen and mounted.
+  document.querySelectorAll("[data-book-tab]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const tab = el.getAttribute("data-book-tab");
+      if (!tab) return;
+      try {
+        sessionStorage.setItem("bookingTab", tab);
+      } catch {
+        // sessionStorage unavailable (e.g. private mode) — the custom
+        // event below still works if the panel is already mounted.
+      }
+      window.dispatchEvent(new CustomEvent("select-booking-tab", { detail: tab }));
+    });
+  });
 </script>

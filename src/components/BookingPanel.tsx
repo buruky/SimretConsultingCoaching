@@ -41,6 +41,37 @@ export default function BookingPanel() {
     })();
   }, []);
 
+  // Let the "Book this session" cards in the Services section pick a tab
+  // here. Services.astro stores the target tab id in sessionStorage (read
+  // once on mount, for when this panel wasn't hydrated yet) and also fires
+  // a "select-booking-tab" event (handled live, for when it was already on
+  // screen and mounted).
+  useEffect(() => {
+    const applyTab = (tab: string | null | undefined) => {
+      if (!tab) return;
+      const match = SESSION_TYPES.find((s) => s.id === tab);
+      if (!match) return;
+      setReady(false);
+      setActive(match.id);
+    };
+
+    try {
+      const stored = sessionStorage.getItem("bookingTab");
+      if (stored) {
+        applyTab(stored);
+        sessionStorage.removeItem("bookingTab");
+      }
+    } catch {
+      // sessionStorage unavailable — the event listener below still works.
+    }
+
+    const handleSelect = (event: Event) => {
+      applyTab((event as CustomEvent<string>).detail);
+    };
+    window.addEventListener("select-booking-tab", handleSelect);
+    return () => window.removeEventListener("select-booking-tab", handleSelect);
+  }, []);
+
   // Cal's embed script creates its own <iframe> outside React's control and
   // doesn't expose a way to set `loading` on it, so mark it lazy ourselves
   // once it shows up (the section is already client:visible-gated, but dev
